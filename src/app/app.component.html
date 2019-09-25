@@ -4,3 +4,8 @@
 <main class="container mx-auto mt-4">
   <router-outlet></router-outlet>
 </main>
+<aside>
+  <div *ngFor="let m of messages$ | async">
+    <p>{{ m.type +': ' + m.content }}</p>
+  </div>
+</aside>

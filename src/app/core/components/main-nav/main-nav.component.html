@@ -4,10 +4,13 @@
   </div>
   <div class="ml-8 w-full flex text-teal-200">
     <a class="block hover:underline hover:text-white mx-4" routerLink="/home">Home</a>
-    <a class="block hover:underline hover:text-white mx-4" routerLink="/trainings">Trainings</a>
+    <ng-container *ngIf="(isUserAuthenticated$ | async)">
+      <a class="block hover:underline hover:text-white mx-4" routerLink="/trainings">Trainings</a>
+    </ng-container>
     <a class="block hover:underline hover:text-white mx-4" routerLink="/about">About</a>
   </div>
-  <div>
-    <a class="hover:underline" routerLink="/login">Login</a>
+  <div class="flex-shrink-0">
+    <a *ngIf="!(isUserAuthenticated$ | async)" class="hover:underline" routerLink="/login">Log In</a>
+    <a *ngIf="(isUserAuthenticated$ | async)" class="hover:underline" (click)="logOut()" href="#">Log Out</a>
   </div>
 </nav>

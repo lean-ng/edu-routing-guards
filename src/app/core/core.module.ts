@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
+
+import { coreRoutes } from './core.routes';
+
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RouterModule } from '@angular/router';
-import { coreRoutes } from './core.routes';
 import { ErrorComponent } from './pages/error/error.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
-
-
+import { AuthService } from './services/auth.service';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -19,11 +21,15 @@ import { MainNavComponent } from './components/main-nav/main-nav.component';
     MainNavComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild(coreRoutes)
   ],
   exports: [
     MainNavComponent
+  ],
+  providers: [
+    AuthService,
+    MessageService
   ]
 })
 export class CoreModule { }
